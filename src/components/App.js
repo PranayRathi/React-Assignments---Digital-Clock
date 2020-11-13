@@ -4,22 +4,21 @@ import "../styles/App.css";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentTime: new Date()
-    };
+    this.state = { currentTime: new Date().toLocaleTimeString() };
   }
+
   componentDidMount() {
-    this.intervalID = setInterval(() => {
-      this.setState({ currentTime: new Date() });
+    this.timerId = setInterval(() => {
+      this.setState({ currentTime: new Date().toLocaleTimeString() });
     }, 1000);
   }
   componentWillUnmount() {
-    clearInterval(this.intervalID);
+    clearInterval(this.timerId);
   }
   render() {
     return (
       <div className="Clock">
-        <h3 id="time">{this.state.time}</h3>
+        <h3 id="time">{this.state.currentTime}</h3>
       </div>
     );
   }
